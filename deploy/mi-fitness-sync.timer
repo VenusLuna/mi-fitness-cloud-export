@@ -1,0 +1,12 @@
+[Unit]
+Description=Pull Mi Fitness every ten minutes
+
+[Timer]
+OnCalendar=*-*-* *:00/10:00 Asia/Shanghai
+Persistent=true
+AccuracySec=1s
+RandomizedDelaySec=0
+Unit=mi-fitness-sync.service
+
+[Install]
+WantedBy=timers.target

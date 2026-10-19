@@ -1,0 +1,20 @@
+[Unit]
+Description=Own-account Mi Fitness read-only synchronization
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=mifitness
+Group=mifitness
+WorkingDirectory=/opt/mi-fitness
+ExecStart=/opt/mi-fitness/.venv/bin/python /opt/mi-fitness/poll_once.py --state /var/lib/mi-fitness --history-pages 40
+UMask=0077
+TimeoutStartSec=540
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/mi-fitness
+MemoryMax=256M
+CPUQuota=40%
